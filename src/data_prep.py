@@ -20,7 +20,8 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     # Drop rows where Description is missing
     df = df.dropna(subset=["Description"])
 
-    # Convert invoice date to datetime
+    # Handle missing invoice date and convert to datetime
+    df = df.dropna(subset=["InvoiceDate"])
     df["InvoiceDate"] = pd.to_datetime(df["InvoiceDate"])
 
     # Filter non-positive quantities and prices
