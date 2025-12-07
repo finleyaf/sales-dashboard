@@ -28,6 +28,7 @@ def main():
     # Convert invoice_date to datetime
     if "invoicedate" in df.columns:
         df["invoicedate"] = pd.to_datetime(df["invoicedate"], dayfirst=True, errors="coerce")
+        df = df[df["invoicedate"].notna()]
 
     # Create database engine and load data
     engine = create_engine(f"sqlite:///{DB_PATH}", echo=False)
